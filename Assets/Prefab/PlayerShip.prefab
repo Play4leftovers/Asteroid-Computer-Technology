@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2501438597091229881}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.8654028, y: -0.7239856, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2160022000165731678
 SpriteRenderer:
@@ -98,6 +98,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -153,6 +172,7 @@ PolygonCollider2D:
       - {x: -1.4649999, y: -1.225}
       - {x: -1.3117746, y: -1.2212707}
       - {x: -0.29867697, y: -1.2005671}
+  m_UseDelaunayMesh: 0
 --- !u!50 &9038611532714136295
 Rigidbody2D:
   serializedVersion: 4
@@ -170,6 +190,12 @@ Rigidbody2D:
   m_AngularDrag: 3
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -189,9 +215,6 @@ MonoBehaviour:
   shipData: {fileID: 11400000, guid: 224acd0025e44374ba6bfc5a9eb629f4, type: 2}
   bullet: {fileID: 1725282137226044708, guid: d16d92cc7384dde4a9255a03c843171b, type: 3}
   shipHealth: 0
-  shipThrustForce: 0
-  shipRotationForce: 0
-  shipStartPosition: {x: 0, y: 0}
   shipPosition: {x: 0, y: 0}
 --- !u!114 &9038611532714136293
 MonoBehaviour:
@@ -205,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 254a98e576eb92242ad76d386d1c3717, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 11fb124eb47a5884eb71abfd4cf147df, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

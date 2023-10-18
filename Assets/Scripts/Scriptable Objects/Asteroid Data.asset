@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b30561e502284d8308b906c99caeb, type: 3}
   m_Name: Asteroid Data
   m_EditorClassIdentifier: 
-  asteroidMaxAmountEnabled: 0
-  asteroidMaxAmount: 3
+  asteroidMaxAmountEnabled: 1
+  asteroidMaxAmount: 50
   asteroidScoreValue: 500
   asteroidSpeed: 2
   asteroidFiringAngle: 25
@@ -22,4 +22,4 @@ MonoBehaviour:
   asteroidMass: 1
   asteroidMassMultiplierMinimum: 0.8
   asteroidMassMultiplierMaximum: 1.3
-  asteroidScore: 6500
+  asteroidScore: 35000

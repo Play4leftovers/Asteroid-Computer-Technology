@@ -6,7 +6,6 @@ namespace Game_Scripts
     public class Spawner : MonoBehaviour
     {
         public AsteroidData spawnData;
-
         public GameObject asteroid;
 
         private void Start()

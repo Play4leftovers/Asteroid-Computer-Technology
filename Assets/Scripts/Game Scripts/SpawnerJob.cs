@@ -3,56 +3,70 @@ using System.Collections.Generic;
 using Scriptable_Objects.Code;
 using Unity.Jobs;
 using UnityEngine;
+using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 
 namespace Game_Scripts
 {
     public struct SpawnerJob : IJob
     {
-        private AsteroidData _asteroidData;
-        private GameObject _asteroid;
-
-        private float _firingAngle;
-        private Vector2 _spawnPoint;
         private uint _seed;
-        private Transform _transform;
+        private Vector2 _spawnPoint;
+        
+        private float _asteroidMass;
+        private float _asteroidFiringAngle;
+        private float _asteroidMassMultiplierMinimum;
+        private float _asteroidMassMultiplierMaximum;
+        private int _asteroidsToBeSpawnedIndex;
 
-        public SpawnerJob(Vector2 spawnPoint, float firingAngle, uint seed, AsteroidData asteroidData, GameObject asteroid, Transform transform)
+        [NativeDisableContainerSafetyRestriction]
+        private NativeArray<float> _mass;
+        [NativeDisableContainerSafetyRestriction]
+        private NativeArray<Vector2> _kickDir;
+        [NativeDisableContainerSafetyRestriction]
+        private NativeArray<Vector2> _localScale;
+        [NativeDisableContainerSafetyRestriction]
+        private NativeArray<float> _kickForce;
+
+        public SpawnerJob(uint seed, Vector2 spawnPoint, float asteroidMass, float asteroidFiringAngle,
+            float asteroidMassMultiplierMinimum, float asteroidMassMultiplierMaximum, NativeArray<Vector2> kickDir,
+            NativeArray<Vector2> localScale, NativeArray<float> mass,
+            NativeArray<float> kickForce, int asteroidsToBeSpawnedIndex)
         {
-            _spawnPoint = spawnPoint;
-            _firingAngle = firingAngle;
             _seed = seed;
 
-            _asteroidData = asteroidData;
-            _asteroid = asteroid;
-            _transform = transform;
+            _spawnPoint = spawnPoint;
+            _asteroidMass = asteroidMass;
+            _asteroidFiringAngle = asteroidFiringAngle;
+            _asteroidMassMultiplierMinimum = asteroidMassMultiplierMinimum;
+            _asteroidMassMultiplierMaximum = asteroidMassMultiplierMaximum;
+            
+            _mass = mass;
+            _kickDir = kickDir;
+            _localScale = localScale;
+            _kickForce = kickForce;
+            _asteroidsToBeSpawnedIndex = asteroidsToBeSpawnedIndex;
         }
-        // Update is called once per frame
+        
         public void Execute()
         {
-            #region Check if asteroid maximum exists and if it has been reached
-
-            if (_asteroidData.asteroidMaxAmountEnabled)
-                if (_transform.childCount >= _asteroidData.asteroidMaxAmount)
-                    return;
-
-            #endregion
-
-            var spawnPoint = Random.insideUnitCircle.normalized * _asteroidData.asteroidSpawnDistance;
-            var firingAngle = Random.Range(-_asteroidData.asteroidFiringAngle, _asteroidData.asteroidFiringAngle);
+            var random = new Unity.Mathematics.Random(_seed);
+            
+            var firingAngle = random.NextFloat(-_asteroidFiringAngle, _asteroidFiringAngle);
             var rot = Quaternion.AngleAxis(firingAngle, new Vector3(0, 0, 1));
 
-            var theAsteroid = Instantiate(_asteroid, spawnPoint, rot, _transform);
-
-            Vector2 dir = rot * -spawnPoint;
-            var forceMultiplier = Random.Range(0.8f, 1.6f);
-            var massMultiplier = Random.Range(_asteroidData.asteroidMassMultiplierMinimum,
-                _asteroidData.asteroidMassMultiplierMaximum);
-            var width = Random.Range(0.75f, 1.25f);
+            Vector2 dir = rot * -_spawnPoint;
+            var forceMultiplier = random.NextFloat(0.8f, 1.6f);
+            var massMultiplier = random.NextFloat(_asteroidMassMultiplierMinimum,
+                _asteroidMassMultiplierMaximum);
+            var width = random.NextFloat(0.9f, 1.1f);
             var height = 1 / width;
-
-            theAsteroid.transform.localScale = new Vector2(width, height) * massMultiplier;
-            theAsteroid.GetComponent<Rigidbody2D>().mass = _asteroidData.asteroidMass * massMultiplier;
-            theAsteroid.GetComponent<Asteroid>().Kick(forceMultiplier, dir);
+            
+            _mass[_asteroidsToBeSpawnedIndex] = _asteroidMass * massMultiplier;
+            _kickDir[_asteroidsToBeSpawnedIndex] = dir;
+            _localScale[_asteroidsToBeSpawnedIndex] = new Vector2(width, height) * massMultiplier;
+            _kickForce[_asteroidsToBeSpawnedIndex] = forceMultiplier;
         }
     }
 } 

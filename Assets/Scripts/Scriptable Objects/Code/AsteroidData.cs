@@ -7,8 +7,7 @@ namespace Scriptable_Objects.Code
     [CreateAssetMenu]
     public class AsteroidData : ScriptableObject
     {
-        public bool asteroidMaxAmountEnabled;
-        public int asteroidMaxAmount;
+        public int asteroidSpawned;
         public int asteroidScoreValue;
         public float asteroidSpeed;
         public float asteroidFiringAngle;

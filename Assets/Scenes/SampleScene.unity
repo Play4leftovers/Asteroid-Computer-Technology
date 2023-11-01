@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 1804024908}
   m_Layer: 0
   m_Name: gr19mtar
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,7 +445,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.09, y: 0.99, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -479,8 +479,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9769a20ed044e8342b13a3e78dfc3904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnData: {fileID: 11400000, guid: 5473a80435a91b14d9f0b71d8a441824, type: 2}
-  asteroid: {fileID: 4533564646121280496, guid: 3fb36689b247e6b4daadfae50f0087ee, type: 3}
+  asteroidData: {fileID: 11400000, guid: 5473a80435a91b14d9f0b71d8a441824, type: 2}
+  AsteroidPool:
+    tag: asteroid
+    prefab: {fileID: 4533564646121280496, guid: 3fb36689b247e6b4daadfae50f0087ee, type: 3}
+    size: 5000
 --- !u!4 &2093187303
 Transform:
   m_ObjectHideFlags: 0

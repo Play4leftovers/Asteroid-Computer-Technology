@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b30561e502284d8308b906c99caeb, type: 3}
   m_Name: Asteroid Data
   m_EditorClassIdentifier: 
+  asteroidSpawned: 36
   asteroidScoreValue: 500
   asteroidSpeed: 2
   asteroidFiringAngle: 25
-  asteroidSpawnRate: 0.01
+  asteroidSpawnRate: 0.001
   asteroidSpawnDistance: 12
   asteroidMass: 1
   asteroidMassMultiplierMinimum: 0.4
   asteroidMassMultiplierMaximum: 0.8
-  asteroidScore: 346500
+  asteroidScore: 372500

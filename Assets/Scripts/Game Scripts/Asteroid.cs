@@ -9,6 +9,7 @@ namespace Game_Scripts
     {
         public AsteroidData astData;
         private Rigidbody2D _rb;
+        private Spawner _spawner;
         
         // Start is called before the first frame update
         private void Awake()
@@ -20,8 +21,7 @@ namespace Game_Scripts
         {
             if (other.CompareTag("Background"))
             {
-                astData.asteroidSpawned--;
-                gameObject.SetActive(false);
+                Break();
             }
         }
 
@@ -33,6 +33,11 @@ namespace Game_Scripts
             }
         }
 
+        public void Creation(Spawner spawner)
+        {
+            _spawner = spawner;
+        }
+        
         public void Kick(float forceMultiplier, Vector2 dir)
         {
             _rb.velocity = dir.normalized * (astData.asteroidSpeed * forceMultiplier);
@@ -41,14 +46,8 @@ namespace Game_Scripts
 
         public void Break()
         {
-            int score = astData.asteroidScoreValue;
-            if (_rb.mass > 0.7f)
-            {
-                score += score;
-            }
-
+            _spawner.Repool(this.gameObject);
             astData.asteroidSpawned--;
-            astData.AddScore(score);
             gameObject.SetActive(false);
         }
     }

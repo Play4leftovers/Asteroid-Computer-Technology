@@ -73,10 +73,6 @@ namespace Game_Scripts
         public void Damaged()
         {
             shipHealth--;
-            if (shipHealth <= 0)
-            {
-                Application.Quit();
-            }
             shipData.ShipDamage();
         }
     }

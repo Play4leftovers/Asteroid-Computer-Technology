@@ -17,6 +17,9 @@ Second example is using the job system. It sadly did not improve things much and
 
 As mentioned my main improvements were to the optimization with implementation of job system and the removal of instantiating during runtime. This was however not a huge improvement and could have been expanded on to include asteroid collision and their movement. Using the job system to move individual asteroids would have worked better than focusing on the spawner.
 
+### Data Oriented Design decisions
+
+My choice was to mainly keep everything on the stack, using data objects to store information between session when needed and to send information back and forth. The main exception to this is in the usage of job system where I send much information that is then calculated and set to the native arrays.
 
 ### Controls
 WAD - Movement. AD to rotate, W to move in the direction the ship is facing

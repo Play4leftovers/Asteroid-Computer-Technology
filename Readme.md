@@ -16,3 +16,8 @@ Second example is using the job system. It sadly did not improve things much and
 ### How was the code optimized using the profiler
 
 As mentioned my main improvements were to the optimization with implementation of job system and the removal of instantiating during runtime. This was however not a huge improvement and could have been expanded on to include asteroid collision and their movement. Using the job system to move individual asteroids would have worked better than focusing on the spawner.
+
+
+### Controls
+WAD - Movement. AD to rotate, W to move in the direction the ship is facing
+SPACE - Shoots

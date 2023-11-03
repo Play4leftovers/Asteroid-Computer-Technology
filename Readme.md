@@ -5,6 +5,7 @@
 ### How did I use DOTS
 
 My usage of DOTS was somewhat limited to just using the Jobs system. My other implementation of improving performance was tweaking of older code and implementation of a pooling system.
+Additional implementation include physics multithreading.
 
 ### How does it make efficient usage of computer hardware
 

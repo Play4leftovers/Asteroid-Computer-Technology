@@ -529,7 +529,7 @@ MonoBehaviour:
   asteroidPool:
     tag: asteroid
     prefab: {fileID: 4533564646121280496, guid: 3fb36689b247e6b4daadfae50f0087ee, type: 3}
-    size: 500
+    size: 5000
 --- !u!4 &2093187303
 Transform:
   m_ObjectHideFlags: 0
